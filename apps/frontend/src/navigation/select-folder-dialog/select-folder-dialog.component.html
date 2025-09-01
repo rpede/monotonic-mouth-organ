@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Message folders</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Folder</mat-label>
+    <mat-select
+      name="selected"
+      [(ngModel)]="selected"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <mat-option *ngFor="let folder of folders$ | async" [value]="folder">
+        {{ folder }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="onSelect()">Select</button>
+</div>

@@ -1,0 +1,53 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Send us feedback</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              #fromModel="ngModel"
+              name="from"
+              required
+              pattern="[^\s]*@[a-z0-9.-]*"
+              type="email"
+              placeholder="From"
+              [(ngModel)]="from"
+            />
+            <mat-error *ngIf="fromModel.invalid">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="editor!"> </ngx-editor-menu>
+            <ngx-editor
+              name="content"
+              [required]="true"
+              [editor]="editor!"
+              [(ngModel)]="content"
+              [disabled]="false"
+              [placeholder]="'Type here...'"
+            ></ngx-editor>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

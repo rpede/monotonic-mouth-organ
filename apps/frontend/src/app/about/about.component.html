@@ -1,0 +1,7 @@
+<div class="container" *ngFor="let section of aboutArticle">
+  <h1>About us</h1>
+  <h2>{{section.heading}}</h2>
+
+  <p *ngFor="let paragraph of section.paragraphs">{{paragraph}}</p>
+</div>
+<mmo-feedback-form></mmo-feedback-form>

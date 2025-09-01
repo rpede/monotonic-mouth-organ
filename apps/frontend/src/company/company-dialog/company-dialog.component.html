@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Details</h1>
+<div mat-dialog-content *ngIf="data$ | async as data">
+  <h3>{{ data.name }}</h3>
+  <mat-list>
+    <mat-list-item *ngFor="let user of data.users">
+      {{ user.name }}
+    </mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-flat-button
+    color="primary"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    Ok
+  </button>
+</div>

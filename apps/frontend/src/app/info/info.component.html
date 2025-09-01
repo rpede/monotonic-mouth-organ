@@ -1,0 +1,15 @@
+<div class="container">
+  <mat-card *ngIf="company$ | async as company">
+    <mat-card-header>
+      <mat-card-title>{{ company.name }}</mat-card-title>
+      <mat-card-subtitle>Employee List</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list role="list">
+        <mat-list-item *ngFor="let user of company.users" role="listitem">{{
+          user.name
+        }}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

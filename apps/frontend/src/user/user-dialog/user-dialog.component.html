@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Details</h1>
+<div *ngIf="data$ | async as data" mat-dialog-content>
+  <div class="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput readonly [value]="data.name" />
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput readonly [(ngModel)]="data.email" />
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <input matInput readonly [(ngModel)]="data.role" />
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Company</mat-label>
+      <input matInput readonly [(ngModel)]="data.company.name" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>
+    Ok
+  </button>
+</div>
