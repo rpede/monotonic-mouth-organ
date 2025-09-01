@@ -9,20 +9,20 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { AdminMessageComponent } from './admin-message/admin-message.component';
-import { MessageDialogComponent } from './message-dialog/message-dialog.component';
-import { MessageTableComponent } from './message-table/message-table.component';
+import { ReportTableComponent } from './report-table/report-table.component';
+import { ReportDialogComponent } from './report-dialog/report-dialog.component';
+import { AdminReportComponent } from './admin-report/admin-report.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: MessageTableComponent,
+        component: ReportTableComponent,
       },
       {
         path: 'admin/:company',
-        component: AdminMessageComponent,
+        component: AdminReportComponent,
       },
     ]),
     CommonModule,
@@ -36,9 +36,9 @@ import { MessageTableComponent } from './message-table/message-table.component';
     MatListModule,
   ],
   declarations: [
-    MessageTableComponent,
-    MessageDialogComponent,
-    AdminMessageComponent,
+    ReportTableComponent,
+    ReportDialogComponent,
+    AdminReportComponent,
   ],
 })
-export class MessageModule {}
+export class ReportModule { }

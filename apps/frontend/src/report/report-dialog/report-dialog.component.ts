@@ -4,11 +4,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'mmo-message-dialog',
-  templateUrl: './message-dialog.component.html',
+  templateUrl: './report-dialog.component.html',
 })
-export class MessageDialogComponent {
+export class ReportDialogComponent {
   constructor(
     readonly sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public filename: string
-  ) {}
+  ) { }
 }

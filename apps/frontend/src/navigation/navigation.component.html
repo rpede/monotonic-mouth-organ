@@ -65,8 +65,8 @@
       <a
         *ngIf="hasRole('MANAGER') | async"
         mat-list-item
-        routerLink="/message"
-        [activated]="router.isActive('/message', true)"
+        routerLink="/report"
+        [activated]="router.isActive('/report', true)"
         routerLinkActive="list-item-active"
       >
         Messages
@@ -74,11 +74,11 @@
       <a
         *ngIf="hasRole('ADMIN') | async"
         mat-list-item
-        [activated]="router.isActive('/message/admin', true)"
+        [activated]="router.isActive('/report/admin', true)"
         routerLinkActive="list-item-active"
         (click)="adminMessageDialog()"
       >
-        Messages
+        Reports
       </a>
       <a
         mat-list-item

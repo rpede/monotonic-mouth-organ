@@ -10,7 +10,6 @@ import { appRoutes } from './app.routes';
 import { NavigationModule } from '../navigation/navigation.module';
 import { LoginModule } from '../login/login.module';
 import { AboutComponent } from './about/about.component';
-import { FeedbackFormComponent } from './feedback-form/feedback-form.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,12 +18,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxEditorModule } from 'ngx-editor';
 import { MatListModule } from '@angular/material/list';
 import { InfoComponent } from './info/info.component';
+import { ReportFormComponent } from './report-form/report-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    FeedbackFormComponent,
+    ReportFormComponent,
     InfoComponent
   ],
   imports: [
@@ -48,4 +48,4 @@ import { InfoComponent } from './info/info.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

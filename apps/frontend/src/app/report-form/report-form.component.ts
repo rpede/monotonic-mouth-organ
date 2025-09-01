@@ -6,11 +6,11 @@ import { firstValueFrom } from 'rxjs';
 import { AuthService, User } from '../../auth.service';
 
 @Component({
-  selector: 'mmo-feedback-form',
-  templateUrl: './feedback-form.component.html',
-  styleUrls: ['./feedback-form.component.scss'],
+  selector: 'mmo-report-form',
+  templateUrl: './report-form.component.html',
+  styleUrls: ['./report-form.component.scss'],
 })
-export class FeedbackFormComponent implements OnInit, OnDestroy {
+export class ReportFormComponent implements OnInit, OnDestroy {
   from = '';
   content = '';
   editor?: Editor;

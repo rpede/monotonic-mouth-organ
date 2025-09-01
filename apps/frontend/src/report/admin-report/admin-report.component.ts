@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
+import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
 
 type Message = {
   timestamp: string;
@@ -13,11 +13,11 @@ type Message = {
 };
 
 @Component({
-  selector: 'mmo-admin-message',
-  templateUrl: './admin-message.component.html',
-  styleUrls: ['./admin-message.component.scss'],
+  selector: 'mmo-admin-report',
+  templateUrl: './admin-report.component.html',
+  styleUrls: ['./admin-report.component.scss'],
 })
-export class AdminMessageComponent implements OnInit {
+export class AdminReportComponent implements OnInit {
   readonly displayedColumns = ['timestamp', 'from', 'actions'];
   dataSource = new MatTableDataSource<Message>([]);
 
@@ -25,7 +25,7 @@ export class AdminMessageComponent implements OnInit {
     private http: HttpClient,
     private dialog: MatDialog,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.dataSource.data = await firstValueFrom(
@@ -43,6 +43,6 @@ export class AdminMessageComponent implements OnInit {
   }
 
   show(filename: string) {
-    this.dialog.open(MessageDialogComponent, { data: 'company/' + filename });
+    this.dialog.open(ReportDialogComponent, { data: 'company/' + filename });
   }
 }
