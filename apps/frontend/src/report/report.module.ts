@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
@@ -12,6 +12,11 @@ import { RouterModule } from '@angular/router';
 import { ReportTableComponent } from './report-table/report-table.component';
 import { ReportDialogComponent } from './report-dialog/report-dialog.component';
 import { AdminReportComponent } from './admin-report/admin-report.component';
+import { ReportFormComponent } from './report-form/report-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxEditorModule } from 'ngx-editor';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -28,6 +33,13 @@ import { AdminReportComponent } from './admin-report/admin-report.component';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+
+    FormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    NgxEditorModule,
+
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -39,6 +51,7 @@ import { AdminReportComponent } from './admin-report/admin-report.component';
     ReportTableComponent,
     ReportDialogComponent,
     AdminReportComponent,
+    ReportFormComponent,
   ],
 })
 export class ReportModule { }

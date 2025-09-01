@@ -11,20 +11,13 @@ import { NavigationModule } from '../navigation/navigation.module';
 import { LoginModule } from '../login/login.module';
 import { AboutComponent } from './about/about.component';
 import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { NgxEditorModule } from 'ngx-editor';
 import { MatListModule } from '@angular/material/list';
 import { InfoComponent } from './info/info.component';
-import { ReportFormComponent } from './report-form/report-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    ReportFormComponent,
     InfoComponent
   ],
   imports: [
@@ -37,13 +30,7 @@ import { ReportFormComponent } from './report-form/report-form.component';
     LoginModule,
 
     MatListModule,
-
-    FormsModule,
     MatCardModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    NgxEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
