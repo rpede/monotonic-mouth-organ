@@ -14,7 +14,8 @@ export class ReportFormComponent implements OnInit, OnDestroy {
   from = '';
   content = '';
   editor?: Editor;
-  user: User | null = null;
+  user?: User | null;
+  caseNo?: string;
 
   constructor(
     private http: HttpClient,
@@ -35,10 +36,13 @@ export class ReportFormComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.http
-      .post<{ message: string }>('/api/message', {
+      .post<{ caseNo: string }>('/api/report', {
         from: this.from,
         content: this.content,
       })
-      .subscribe(({ message }) => this.snackBar.open(message, 'dismiss'));
+      .subscribe(({ caseNo }) => {
+        this.caseNo = caseNo;
+        this.snackBar.open("Thank you for reporting.", 'dismiss');
+      });
   }
 }

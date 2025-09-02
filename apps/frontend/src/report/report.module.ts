@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxEditorModule } from 'ngx-editor';
 import { MatCardModule } from '@angular/material/card';
+import { NewReportComponent } from './new-report/new-report.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,10 @@ import { MatCardModule } from '@angular/material/card';
       {
         path: '',
         component: ReportTableComponent,
+      },
+      {
+        path: 'new',
+        component: NewReportComponent,
       },
       {
         path: 'admin/:company',
@@ -52,6 +57,7 @@ import { MatCardModule } from '@angular/material/card';
     ReportDialogComponent,
     AdminReportComponent,
     ReportFormComponent,
+    NewReportComponent
   ],
 })
 export class ReportModule { }

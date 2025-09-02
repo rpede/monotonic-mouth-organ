@@ -1,7 +1,7 @@
 <form #form="ngForm" (ngSubmit)="onSubmit()">
   <mat-card class="login-card">
     <mat-card-header>
-      <mat-card-title>Send us feedback</mat-card-title>
+      <mat-card-title>Report form</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -37,6 +37,10 @@
             ></ngx-editor>
           </div>
         </div>
+      </div>
+      <div class="danger" *ngIf="caseNo">
+        Please note your case number for future reference.
+        Case number is <b>{{caseNo}}</b>
       </div>
     </mat-card-content>
     <mat-card-actions>

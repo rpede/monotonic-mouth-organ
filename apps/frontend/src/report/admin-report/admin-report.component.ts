@@ -30,7 +30,7 @@ export class AdminReportComponent implements OnInit {
   async ngOnInit() {
     this.dataSource.data = await firstValueFrom(
       this.http.get<string[]>(
-        '/api/message/company/' + this.route.snapshot.params['company']
+        '/api/report/company/' + this.route.snapshot.params['company']
       )
     ).then((filenames) =>
       filenames.map((filename) => {

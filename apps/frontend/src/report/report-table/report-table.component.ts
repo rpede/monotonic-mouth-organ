@@ -18,7 +18,7 @@ export class ReportTableComponent implements OnInit {
 
   async ngOnInit() {
     this.dataSource.data = await firstValueFrom(
-      this.http.get<string[]>('/api/message')
+      this.http.get<string[]>('/api/report')
     );
   }
 

@@ -1,4 +1,4 @@
-export class MessageDto {
+export class ReportDto {
   from: string;
   content: string;
 }

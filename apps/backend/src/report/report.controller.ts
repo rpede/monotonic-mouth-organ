@@ -7,29 +7,26 @@ import {
   HttpStatus,
   Param,
   Post,
-  StreamableFile,
   UseGuards,
 } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { createReadStream, rmSync } from 'fs';
 import * as fs from 'fs/promises';
-import { userInfo } from 'os';
 import path from 'path';
 import { AuthGuard } from '../auth/auth.guard';
 import { CurrentUser } from '../current-user.decorator';
 import { DatabaseService } from '../global/database.service';
 import { Role } from '../role';
-import { MessageDto } from './message.dto';
+import { ReportDto } from './report.dto';
 
 const dir = 'user-data/';
 
-@Controller('message')
-export class MessageController {
-  constructor(private readonly db: DatabaseService) {}
+@Controller('report')
+export class ReportController {
+  constructor(private readonly db: DatabaseService) { }
 
   @UseGuards(AuthGuard)
   @Get()
-  async messages(@CurrentUser() user: User) {
+  async reports(@CurrentUser() user: User) {
     if (user.role === Role.MANAGER) {
       const companyName = await this.getCompanyName(user);
       return await fs.readdir(path.join(dir, companyName));
@@ -40,7 +37,7 @@ export class MessageController {
 
   @UseGuards(AuthGuard)
   @Get('company/:companyName')
-  async messagesForCompany(
+  async reportsForCompany(
     @CurrentUser() user: User | undefined,
     @Param('companyName') companyName: string
   ) {
@@ -54,7 +51,7 @@ export class MessageController {
   @UseGuards(AuthGuard)
   @Get('/company/:companyName/:filename(*)')
   @Header('Content-Type', 'text/html')
-  async companyMessage(
+  async companyReport(
     @CurrentUser() user: User | undefined,
     @Param('companyName') companyName: string,
     @Param('filename') filename: string
@@ -66,19 +63,19 @@ export class MessageController {
   @Post()
   async save(
     @CurrentUser() user: User | undefined,
-    @Body() message: MessageDto
+    @Body() report: ReportDto
   ) {
-    const timestamp = new Date().toISOString();
-    const filename = `${timestamp}_${message.from}.html`;
+    const caseNo = (Date.now() / 1000 / 60).toFixed();
+    const filename = `${caseNo}_${report.from}.html`;
     const companyName = (await this.getCompanyName(user)) ?? 'Unknown';
-    fs.writeFile(path.join(dir, companyName, filename), message.content);
-    return 'OK';
+    fs.writeFile(path.join(dir, companyName, filename), report.content);
+    return { caseNo };
   }
 
   @UseGuards(AuthGuard)
   @Get(':filename(*)')
   @Header('Content-Type', 'text/html')
-  async message(
+  async report(
     @CurrentUser() user: User | undefined,
     @Param('filename') filename: string
   ) {

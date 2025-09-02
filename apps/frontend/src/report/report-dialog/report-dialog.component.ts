@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'mmo-message-dialog',
+  selector: 'mmo-report-dialog',
   templateUrl: './report-dialog.component.html',
 })
 export class ReportDialogComponent {

@@ -27,7 +27,7 @@ export class NavigationComponent {
     readonly auth: AuthService,
     private http: HttpClient,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   isLoggedIn() {
     return this.auth.user.pipe(map((user) => !!user));
@@ -44,11 +44,11 @@ export class NavigationComponent {
     this.auth.refresh();
   }
 
-  adminMessageDialog() {
+  adminReportDialog() {
     const dialogRef = this.dialog.open(SelectFolderDialogComponent);
     dialogRef.afterClosed().subscribe((folder) => {
       console.log(folder);
-      this.router.navigateByUrl('/message/admin/' + folder);
+      this.router.navigateByUrl('/report/admin/' + folder);
     });
   }
 }

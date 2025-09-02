@@ -29,11 +29,11 @@
       <a
         *ngIf="isLoggedIn() | async"
         mat-list-item
-        routerLink="/work"
-        [activated]="router.isActive('/work', true)"
+        routerLink="/report/new"
+        [activated]="router.isActive('/report/new', true)"
         routerLinkActive="list-item-active"
       >
-        Work
+        New report
       </a>
       <a
         *ngIf="hasRole('NORMAL', 'MANAGER') | async"
@@ -69,16 +69,16 @@
         [activated]="router.isActive('/report', true)"
         routerLinkActive="list-item-active"
       >
-        Messages
+        View Reports
       </a>
       <a
         *ngIf="hasRole('ADMIN') | async"
         mat-list-item
         [activated]="router.isActive('/report/admin', true)"
         routerLinkActive="list-item-active"
-        (click)="adminMessageDialog()"
+        (click)="adminReportDialog()"
       >
-        Reports
+        View Reports
       </a>
       <a
         mat-list-item
