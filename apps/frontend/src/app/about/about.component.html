@@ -1,6 +1,9 @@
-<div class="container" *ngFor="let section of aboutArticle">
+<div class="container">
   <h1>About us</h1>
+
+  <article  *ngFor="let section of aboutArticle">
   <h2>{{section.heading}}</h2>
 
   <p *ngFor="let paragraph of section.paragraphs">{{paragraph}}</p>
+  </article>
 </div>
