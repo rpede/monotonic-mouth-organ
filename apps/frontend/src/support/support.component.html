@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="clearfix">
+    <h1>Support</h1>
+    <form class="f-r" #form="ngForm" (ngSubmit)="search()">
+      <mat-form-field class="full-width">
+        <input matInput #fromModel="ngModel" name="email" type="email" placeholder="Email" [(ngModel)]="email"  />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="info">
+    <p>
+    Users keeps forgetting their caseNo.
+    Use this page to look up the case number by typing their full email
+    address.
+    </p>
+  </div>
+
+  <div class="danger">
+    <p>
+      <b>IMPORTANT: Shall only be used to resolve support calls.</b>
+    </p>
+  </div>
+  <hr/>
+  <div class="mat-elevation-z8">
+    <mat-list role="list" *ngFor="let case of cases">
+      <mat-list-item role="listitem">{{case.caseNo}}</mat-list-item>
+    </mat-list>
+  </div>
+</div>

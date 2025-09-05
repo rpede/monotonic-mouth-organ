@@ -30,4 +30,9 @@ export const appRoutes: Routes = [
     loadChildren: () =>
       import('../report/report.module').then((m) => m.ReportModule),
   },
+  {
+    path: 'support',
+    loadChildren: () =>
+      import('../support/support.module').then((m) => m.SupportModule),
+  },
 ];

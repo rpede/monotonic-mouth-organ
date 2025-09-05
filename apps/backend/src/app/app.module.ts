@@ -8,9 +8,10 @@ import { GlobalModule } from '../global/global.module';
 import { UserModule } from '../user/user.module';
 import { CompanyModule } from '../company/company.module';
 import { ReportModule } from '../report/report.module';
+import { SupportModule } from '../support/support.module';
 
 @Module({
-  imports: [GlobalModule, AuthModule, UserModule, CompanyModule, ReportModule],
+  imports: [GlobalModule, AuthModule, UserModule, CompanyModule, ReportModule, SupportModule],
   controllers: [AppController],
   providers: [AppService, DatabaseService],
   exports: [DatabaseService],

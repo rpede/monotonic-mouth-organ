@@ -31,6 +31,13 @@ async function main() {
     role: 'ADMIN',
   });
 
+  await saveUser({
+    email: 'support@example.com',
+    name: 'Support',
+    passwordHash: 'f21e6e160c503ad7b79e60f22d43e861', // go2support
+    role: 'SUPPORT',
+  });
+
   const companyA = await saveCompany({ name: 'Company A' });
   await saveUser({
     email: 'dwight@a.com',

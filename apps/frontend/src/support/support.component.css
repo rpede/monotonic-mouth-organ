@@ -1,0 +1,38 @@
+.container {
+  margin: 40px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+  width: 100%;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.f-r {
+  float: right;
+}
+
+.info {
+  background-color: #d7e3ff;
+  color: #00458f;
+  border: 1px solid #00458f !important;
+  border-radius: 16px;
+  padding: 4px;
+  padding-left: 16px;
+}
+
+.danger {
+  background-color: #ffdad6;
+  color: #93000a;
+  border: 1px solid #93000a !important;
+  border-radius: 16px;
+  padding: 4px;
+  padding-left: 16px;
+}

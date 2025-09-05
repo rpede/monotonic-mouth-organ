@@ -10,7 +10,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { User } from '@prisma/client';
-import * as fs from 'fs/promises';
+import * as fs from 'fs';
+import * as fsp from 'fs/promises';
 import path from 'path';
 import { AuthGuard } from '../auth/auth.guard';
 import { CurrentUser } from '../current-user.decorator';
@@ -29,9 +30,9 @@ export class ReportController {
   async reports(@CurrentUser() user: User) {
     if (user.role === Role.INVESTIGATOR) {
       const companyName = await this.getCompanyName(user);
-      return await fs.readdir(path.join(dir, companyName));
+      return await fsp.readdir(path.join(dir, companyName));
     } else {
-      return (await fs.readdir(dir)).filter((fn) => !fn.startsWith('.'));
+      return (await fsp.readdir(dir)).filter((fn) => !fn.startsWith('.'));
     }
   }
 
@@ -44,7 +45,7 @@ export class ReportController {
     if (user.role !== 'ADMIN') {
       throw new HttpException('Only allowed for admin', HttpStatus.FORBIDDEN);
     }
-    const files = await fs.readdir(path.join(dir, companyName));
+    const files = await fsp.readdir(path.join(dir, companyName));
     return files.map((file) => `${companyName}/${file}`);
   }
 
@@ -56,7 +57,7 @@ export class ReportController {
     @Param('companyName') companyName: string,
     @Param('filename') filename: string
   ) {
-    const file = await fs.readFile(path.join(dir, companyName, filename));
+    const file = await fsp.readFile(path.join(dir, companyName, filename));
     return file.toString();
   }
 
@@ -68,7 +69,9 @@ export class ReportController {
     const caseNo = (Date.now() / 1000 / 60).toFixed();
     const filename = `${caseNo}_${report.from}.html`;
     const companyName = (await this.getCompanyName(user)) ?? 'Unknown';
-    fs.writeFile(path.join(dir, companyName, filename), report.content);
+    const comDir = path.join(dir, companyName);
+    if (!fs.existsSync(comDir)) await fsp.mkdir(comDir);
+    fsp.writeFile(path.join(comDir, filename), report.content);
     // Employees keep forgetting their casesNo.
     // Save it to avoid excessive support calls.
     await this.saveCaseNo(user, caseNo);
@@ -83,7 +86,7 @@ export class ReportController {
     @Param('filename') filename: string
   ) {
     const companyName = (await this.getCompanyName(user)) ?? 'Unknown';
-    const file = await fs.readFile(path.join(dir, companyName, filename));
+    const file = await fsp.readFile(path.join(dir, companyName, filename));
     return file.toString();
   }
 

@@ -81,6 +81,15 @@
         View Reports
       </a>
       <a
+        *ngIf="hasRole('SUPPORT') | async"
+        mat-list-item
+        routerLink="/support"
+        [activated]="router.isActive('/support', true)"
+        routerLinkActive="list-item-active"
+      >
+        Support
+      </a>
+      <a
         mat-list-item
         routerLink="/about"
         [activated]="router.isActive('/about', true)"
