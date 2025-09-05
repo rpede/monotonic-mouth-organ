@@ -27,7 +27,7 @@ export class ReportController {
   @UseGuards(AuthGuard)
   @Get()
   async reports(@CurrentUser() user: User) {
-    if (user.role === Role.MANAGER) {
+    if (user.role === Role.INVESTIGATOR) {
       const companyName = await this.getCompanyName(user);
       return await fs.readdir(path.join(dir, companyName));
     } else {

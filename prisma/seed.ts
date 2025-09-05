@@ -27,16 +27,16 @@ async function main() {
     email: 'admin@example.com',
     name: 'Admin',
     passwordHash:
-    '$2b$10$lJp7XSw2BiUJit/CBjPXieJXPQJWj01IY.966XnKDH3EDkdVno/o2', // god
+      '$2b$10$lJp7XSw2BiUJit/CBjPXieJXPQJWj01IY.966XnKDH3EDkdVno/o2', // god
     role: 'ADMIN',
   });
 
   const companyA = await saveCompany({ name: 'Company A' });
   await saveUser({
-    email: 'michaelscott@a.com',
-    name: 'Michael Scott',
+    email: 'dwight@a.com',
+    name: 'Dwight Schrute',
     passwordHash: 'bdc87b9c894da5168059e00ebffb9077', // password1234
-    role: 'MANAGER',
+    role: 'INVESTIGATOR',
     companyId: companyA.id,
   });
   await saveUser({
@@ -59,7 +59,7 @@ async function main() {
     email: 'boss@b.com',
     name: 'Pointy-haired Boss',
     passwordHash: 'f8f4877c5d8062c7ce207170d070f11b', // p3cafx4q
-    role: 'MANAGER',
+    role: 'INVESTIGATOR',
     companyId: companyB.id,
   });
   await saveUser({

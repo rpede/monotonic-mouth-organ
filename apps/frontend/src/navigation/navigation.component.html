@@ -36,7 +36,7 @@
         New report
       </a>
       <a
-        *ngIf="hasRole('NORMAL', 'MANAGER') | async"
+        *ngIf="hasRole('NORMAL', 'INVESTIGATOR') | async"
         mat-list-item
         routerLink="/info"
         [activated]="router.isActive('/info', true)"
@@ -45,7 +45,7 @@
         Info
       </a>
       <a
-        *ngIf="hasRole('MANAGER', 'ADMIN') | async"
+        *ngIf="hasRole('INVESTIGATOR', 'ADMIN') | async"
         mat-list-item
         routerLink="/user"
         [activated]="router.isActive('/user', true)"
@@ -63,7 +63,7 @@
         Companies
       </a>
       <a
-        *ngIf="hasRole('MANAGER') | async"
+        *ngIf="hasRole('INVESTIGATOR') | async"
         mat-list-item
         routerLink="/report"
         [activated]="router.isActive('/report', true)"
