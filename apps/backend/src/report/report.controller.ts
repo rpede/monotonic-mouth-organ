@@ -69,6 +69,9 @@ export class ReportController {
     const filename = `${caseNo}_${report.from}.html`;
     const companyName = (await this.getCompanyName(user)) ?? 'Unknown';
     fs.writeFile(path.join(dir, companyName, filename), report.content);
+    // Employees keep forgetting their casesNo.
+    // Save it to avoid excessive support calls.
+    await this.saveCaseNo(user, caseNo);
     return { caseNo };
   }
 
@@ -94,5 +97,9 @@ export class ReportController {
     catch {
       return null;
     }
+  }
+
+  private async saveCaseNo(user: User, caseNo: string) {
+    await this.db.case.create({ data: { caseNo, userId: user.id } })
   }
 }

@@ -18,6 +18,13 @@ model User {
   role         String
   company      Company? @relation(fields: [companyId], references: [id])
   companyId    Int?
+  cases        Case[]
+}
+
+model Case {
+  caseNo    String @id
+  user      User @relation(fields: [userId], references: [id])
+  userId    Int
 }
 
 model Company {
