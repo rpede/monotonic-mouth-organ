@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    ports:
+      - "4200:4200"
+  backend:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    environment:
+      PUBLIC: public
+    ports:
+      - "3333:3333"
