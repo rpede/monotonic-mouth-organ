@@ -45,7 +45,7 @@
         Follow Case
       </a>
       <a
-        *ngIf="hasRole('NORMAL', 'INVESTIGATOR') | async"
+        *ngIf="hasRole('EMPLOYEE', 'INVESTIGATOR') | async"
         mat-list-item
         routerLink="/info"
         [activated]="router.isActive('/info', true)"

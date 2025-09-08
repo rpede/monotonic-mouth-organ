@@ -50,14 +50,14 @@ async function main() {
     email: 'jim@a.com',
     name: 'Jim',
     passwordHash: '54aea06e65a58b1bc96e060c86b212c3', // ilovepam
-    role: 'NORMAL',
+    role: 'EMPLOYEE',
     companyId: companyA.id,
   });
   await saveUser({
     email: 'pam@a.com',
     name: 'Pam',
     passwordHash: '8df2b7edb88ba2270a320df6651b1422', // ilovejim
-    role: 'NORMAL',
+    role: 'EMPLOYEE',
     companyId: companyA.id,
   });
 
@@ -73,21 +73,21 @@ async function main() {
     email: 'dilbert@b.com',
     name: 'Dilbert',
     passwordHash: '4550955866ee7b328f9e0877bc37a096', // Ab4gSgWX
-    role: 'NORMAL',
+    role: 'EMPLOYEE',
     companyId: companyB.id,
   });
   await saveUser({
     email: 'wally@b.com',
     name: 'Wally',
     passwordHash: '3ee9f4b95b4c9e5276d4dba3df61e353', // B2WDEcBg
-    role: 'NORMAL',
+    role: 'EMPLOYEE',
     companyId: companyB.id,
   });
   await saveUser({
     email: 'alice@b.com',
     name: 'Alice',
     passwordHash: 'e2d0b6fa939e5ceec4217df543606144', // OsRxnTx]S8?!\K[O;/`zD<QB4lyk\vy0
-    role: 'NORMAL',
+    role: 'EMPLOYEE',
     companyId: companyB.id,
   });
 }
