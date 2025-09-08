@@ -18,7 +18,7 @@ import { InfoComponent } from './info/info.component';
   declarations: [
     AppComponent,
     AboutComponent,
-    InfoComponent
+    InfoComponent,
   ],
   imports: [
     CommonModule,

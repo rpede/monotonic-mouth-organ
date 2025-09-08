@@ -11,8 +11,8 @@ import { ReportDialogComponent } from '../report-dialog/report-dialog.component'
   styleUrls: ['./report-table.component.scss'],
 })
 export class ReportTableComponent implements OnInit {
-  readonly displayedColumns = ['timestamp', 'from', 'actions'];
-  dataSource = new MatTableDataSource<string>(["2023-02-18T22:17:26.951Z_toby@example.com.html"]);
+  readonly displayedColumns = ['caseNo', 'timestamp', 'actions'];
+  dataSource = new MatTableDataSource<string>(["29284858.html"]);
 
   constructor(private http: HttpClient, private dialog: MatDialog) { }
 

@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxEditorModule } from 'ngx-editor';
 import { MatCardModule } from '@angular/material/card';
 import { NewReportComponent } from './new-report/new-report.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { NewReportComponent } from './new-report/new-report.component';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
 
     FormsModule,
     MatCardModule,

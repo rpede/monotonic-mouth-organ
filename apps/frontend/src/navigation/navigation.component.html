@@ -36,6 +36,15 @@
         New report
       </a>
       <a
+        *ngIf="isLoggedIn() | async"
+        mat-list-item
+        routerLink="/case/follow"
+        [activated]="router.isActive('/case/follow', true)"
+        routerLinkActive="list-item-active"
+      >
+        Follow Case
+      </a>
+      <a
         *ngIf="hasRole('NORMAL', 'INVESTIGATOR') | async"
         mat-list-item
         routerLink="/info"

@@ -67,7 +67,7 @@ export class ReportController {
     @Body() report: ReportDto
   ) {
     const caseNo = (Date.now() / 1000 / 60).toFixed();
-    const filename = `${caseNo}_${report.from}.html`;
+    const filename = `${caseNo}.html`;
     const companyName = (await this.getCompanyName(user)) ?? 'Unknown';
     const comDir = path.join(dir, companyName);
     if (!fs.existsSync(comDir)) await fsp.mkdir(comDir);
