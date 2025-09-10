@@ -1,35 +1,47 @@
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { MatCardModule } from "@angular/material/card";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
 import { RouterModule } from "@angular/router";
-import { CaseFollowComponent } from "./case-follow.component";
 import { MatButtonModule } from "@angular/material/button";
 import { SharedModule } from "../shared/shared.module";
+import { AdminCaseComponent } from "./admin-case/admin-case.component";
+import { CaseTableComponent } from "./case-table/case-table.component";
+import { CaseDialogComponent } from "./case-dialog/case-dialog.component";
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatListModule } from "@angular/material/list";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: "follow",
-        component: CaseFollowComponent
-      }
+        path: '',
+        component: CaseTableComponent,
+      },
+      {
+        path: 'admin/:company',
+        component: AdminCaseComponent,
+      },
     ]),
     CommonModule,
     HttpClientModule,
     SharedModule,
 
-    FormsModule,
-    MatCardModule,
-    MatInputModule,
-    MatFormFieldModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatButtonModule,
+    MatDialogModule,
+    MatListModule,
   ],
   declarations: [
-    CaseFollowComponent
+    CaseTableComponent,
+    AdminCaseComponent,
+    CaseDialogComponent,
   ],
 })
 export class CaseModule { }

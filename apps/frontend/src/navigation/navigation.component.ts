@@ -48,7 +48,7 @@ export class NavigationComponent {
     const dialogRef = this.dialog.open(SelectFolderDialogComponent);
     dialogRef.afterClosed().subscribe((folder) => {
       console.log(folder);
-      this.router.navigateByUrl('/report/admin/' + folder);
+      this.router.navigateByUrl('/case/admin/' + folder);
     });
   }
 }

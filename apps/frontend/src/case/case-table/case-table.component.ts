@@ -3,17 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { firstValueFrom } from 'rxjs';
-import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
 import { CaseStatus } from '../../shared/case-status';
 import { Case } from './case.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CaseDialogComponent } from '../case-dialog/case-dialog.component';
 
 @Component({
-  selector: 'mmo-report-table',
-  templateUrl: './report-table.component.html',
-  styleUrls: ['./report-table.component.scss'],
+  selector: 'mmo-case-table',
+  templateUrl: './case-table.component.html',
+  styleUrls: ['./case-table.component.scss'],
 })
-export class ReportTableComponent implements OnInit {
+export class CaseTableComponent implements OnInit {
   readonly displayedColumns = ['caseNo', 'timestamp', 'status', 'actions'];
   dataSource = new MatTableDataSource<Case>([{
     caseNo: "29284858",
@@ -41,7 +41,7 @@ export class ReportTableComponent implements OnInit {
     });
   }
 
-  show(row: string) {
-    this.dialog.open(ReportDialogComponent, { data: row });
+  show(row: Case) {
+    this.dialog.open(CaseDialogComponent, { data: `${row.caseNo}.html` });
   }
 }

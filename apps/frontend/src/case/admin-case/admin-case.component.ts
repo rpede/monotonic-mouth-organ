@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
+import { CaseDialogComponent } from '../case-dialog/case-dialog.component';
 
 type Message = {
   timestamp: string;
@@ -13,11 +13,11 @@ type Message = {
 };
 
 @Component({
-  selector: 'mmo-admin-report',
-  templateUrl: './admin-report.component.html',
-  styleUrls: ['./admin-report.component.scss'],
+  selector: 'mmo-admin-case',
+  templateUrl: './admin-case.component.html',
+  styleUrls: ['./admin-case.component.scss'],
 })
-export class AdminReportComponent implements OnInit {
+export class AdminCaseComponent implements OnInit {
   readonly displayedColumns = ['timestamp', 'from', 'actions'];
   dataSource = new MatTableDataSource<Message>([]);
 
@@ -43,6 +43,6 @@ export class AdminReportComponent implements OnInit {
   }
 
   show(filename: string) {
-    this.dialog.open(ReportDialogComponent, { data: 'company/' + filename });
+    this.dialog.open(CaseDialogComponent, { data: 'company/' + filename });
   }
 }

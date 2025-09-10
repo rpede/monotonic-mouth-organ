@@ -1,16 +1,19 @@
 import { Component } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: 'mmo-case-follow',
-  templateUrl: './case-follow.component.html',
+  selector: 'mmo-report-status',
+  templateUrl: './report-status.component.html',
   styles: [`
     .container {
       padding: 40px;
     }
 `]
 })
-export class CaseFollowComponent {
+export class ReportStatusComponent {
   caseNo = "";
+
+  constructor(readonly sanitizer: DomSanitizer) { }
 
   public get validCase() {
     const valid = this.caseNo && this.caseNo.toString().length === 8;

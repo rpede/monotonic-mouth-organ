@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Follow your case</h1>
+  <h1>Check status of your report</h1>
   <h3>You can follow the case for any report you've might have created here.</h3>
   <mat-form-field class="full-width">
     <input matInput placeholder="Case Number" [(ngModel)]="caseNo" min="0" max="99999999" />
@@ -7,7 +7,9 @@
 
   <article *ngIf="validCase;else invalidCaseNo">
     <h3>Date: {{caseNo | caseCreated}}</h3>
-    <iframe style="width: 100%; height: 600px" [src]="'/api/report/'+caseNo+'.html'"></iframe>
+    <iframe style="width: 100%; height: 600px"
+      [src]="sanitizer.bypassSecurityTrustResourceUrl('/api/report/' + caseNo + '.html')">
+    </iframe>
   </article>
   <ng-template #invalidCaseNo >
     <p style="color: red;">Please enter a valid case number</p>

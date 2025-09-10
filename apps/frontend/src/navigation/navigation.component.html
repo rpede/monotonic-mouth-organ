@@ -27,7 +27,7 @@
         Logout
       </a>
       <a
-        *ngIf="isLoggedIn() | async"
+        *ngIf="hasRole('EMPLOYEE') | async"
         mat-list-item
         routerLink="/report/new"
         [activated]="router.isActive('/report/new', true)"
@@ -36,22 +36,13 @@
         New report
       </a>
       <a
-        *ngIf="isLoggedIn() | async"
+        *ngIf="hasRole('EMPLOYEE') | async"
         mat-list-item
-        routerLink="/case/follow"
-        [activated]="router.isActive('/case/follow', true)"
+        routerLink="/report/status"
+        [activated]="router.isActive('/report/status', true)"
         routerLinkActive="list-item-active"
       >
-        Follow Case
-      </a>
-      <a
-        *ngIf="hasRole('EMPLOYEE', 'INVESTIGATOR') | async"
-        mat-list-item
-        routerLink="/info"
-        [activated]="router.isActive('/info', true)"
-        routerLinkActive="list-item-active"
-      >
-        Info
+        Status
       </a>
       <a
         *ngIf="hasRole('INVESTIGATOR', 'ADMIN') | async"
@@ -63,6 +54,15 @@
         Users
       </a>
       <a
+        *ngIf="hasRole('INVESTIGATOR') | async"
+        mat-list-item
+        routerLink="/case"
+        [activated]="router.isActive('/case', true)"
+        routerLinkActive="list-item-active"
+      >
+        Cases
+      </a>
+      <a
         *ngIf="hasRole('ADMIN') | async"
         mat-list-item
         routerLink="/company"
@@ -72,22 +72,13 @@
         Companies
       </a>
       <a
-        *ngIf="hasRole('INVESTIGATOR') | async"
-        mat-list-item
-        routerLink="/report"
-        [activated]="router.isActive('/report', true)"
-        routerLinkActive="list-item-active"
-      >
-        View Reports
-      </a>
-      <a
         *ngIf="hasRole('ADMIN') | async"
         mat-list-item
-        [activated]="router.isActive('/report/admin', true)"
+        [activated]="router.isActive('/case/admin', true)"
         routerLinkActive="list-item-active"
         (click)="adminReportDialog()"
       >
-        View Reports
+        Administrate Cases
       </a>
       <a
         *ngIf="hasRole('SUPPORT') | async"
@@ -99,12 +90,21 @@
         Support
       </a>
       <a
+        *ngIf="hasRole('EMPLOYEE', 'INVESTIGATOR') | async"
+        mat-list-item
+        routerLink="/info"
+        [activated]="router.isActive('/info', true)"
+        routerLinkActive="list-item-active"
+      >
+        Info
+      </a>
+      <a
         mat-list-item
         routerLink="/about"
         [activated]="router.isActive('/about', true)"
         routerLinkActive="list-item-active"
       >
-        About us
+        About
       </a>
     </mat-nav-list>
   </mat-sidenav>
