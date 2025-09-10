@@ -78,7 +78,7 @@ export class ReportController {
     fsp.writeFile(path.join(comDir, filename), report.content);
     // Employees keep forgetting their casesNo.
     // Save it to avoid excessive support calls.
-    await this.saveCaseNo(user, caseNo);
+    await this.db.case.create({ data: { caseNo, userId: user.id, companyId: user.companyId } });
     return { caseNo };
   }
 
