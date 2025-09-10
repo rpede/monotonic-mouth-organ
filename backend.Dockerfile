@@ -12,6 +12,7 @@ RUN apk add openssl --no-cache
 WORKDIR /app
 COPY --from=build /app/dist/apps/backend .
 COPY --from=build /app/prisma/database.db .
+RUN mkdir -m a+rw user-data
 COPY ./package.json ./
 COPY package-lock.json ./
 COPY prisma .
