@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { NewReportComponent } from './new-report/new-report.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReportStatusComponent } from './report-status/report-status.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { ReportStatusComponent } from './report-status/report-status.component';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatButtonModule,
     NgxEditorModule,
   ],
   declarations: [
