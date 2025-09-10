@@ -7,9 +7,10 @@ import {
   HttpStatus,
   Param,
   Post,
+  Put,
   UseGuards,
 } from '@nestjs/common';
-import { User } from '@prisma/client';
+import { Case, User } from '@prisma/client';
 import * as fs from 'fs';
 import * as fsp from 'fs/promises';
 import path from 'path';
@@ -30,9 +31,11 @@ export class ReportController {
   async reports(@CurrentUser() user: User) {
     if (user.role === Role.INVESTIGATOR) {
       const companyName = await this.getCompanyName(user);
-      return await fsp.readdir(path.join(dir, companyName));
+      return await this.db.case.findMany({
+        where: { company: { name: { equals: companyName } } }
+      });
     } else {
-      return (await fsp.readdir(dir)).filter((fn) => !fn.startsWith('.'));
+      return await this.db.case.findMany();
     }
   }
 
@@ -76,6 +79,12 @@ export class ReportController {
     // Save it to avoid excessive support calls.
     await this.saveCaseNo(user, caseNo);
     return { caseNo };
+  }
+
+  @UseGuards(AuthGuard)
+  @Put(':caseNo/status')
+  async updateStatus(@Param("caseNo") caseNo, @Body('status') status: string) {
+    return await this.db.case.update({ where: { caseNo }, data: { status } });
   }
 
   @UseGuards(AuthGuard)

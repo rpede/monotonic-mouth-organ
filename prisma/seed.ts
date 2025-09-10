@@ -22,6 +22,14 @@ function saveCompany(
   });
 }
 
+function saveCase(data: Prisma.CaseCreateInput | Prisma.CaseUncheckedCreateInput) {
+  return prisma.case.upsert({
+    where: { caseNo: data.caseNo },
+    update: data,
+    create: data,
+  })
+}
+
 async function main() {
   await saveUser({
     email: 'admin@example.com',
@@ -89,6 +97,11 @@ async function main() {
     passwordHash: 'e2d0b6fa939e5ceec4217df543606144', // OsRxnTx]S8?!\K[O;/`zD<QB4lyk\vy0
     role: 'EMPLOYEE',
     companyId: companyB.id,
+  });
+  await saveCase({
+    caseNo: "29284858",
+    user: { connect: { email: 'jim@a.com' } },
+    company: { connect: { name: "Company A" } }
   });
 }
 

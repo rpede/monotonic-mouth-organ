@@ -19,6 +19,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { MatCardModule } from '@angular/material/card';
 import { NewReportComponent } from './new-report/new-report.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { SharedModule } from '../shared/shared.module';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
     NgxEditorModule,
 
     MatTableModule,
