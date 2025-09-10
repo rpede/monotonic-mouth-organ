@@ -10,18 +10,14 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { Case, User } from '@prisma/client';
-import * as fs from 'fs';
-import * as fsp from 'fs/promises';
-import path from 'path';
-import { execSync } from 'child_process';
+import { User } from '@prisma/client';
 import { AuthGuard } from '../auth/auth.guard';
 import { CurrentUser } from '../current-user.decorator';
 import { DatabaseService } from '../global/database.service';
 import { Role } from '../role';
 import { ReportDto } from './report.dto';
+import { readReport, saveReport, withCharacterCount } from '../report-utils';
 
-const dir = 'user-data/';
 
 @Controller('report')
 export class ReportController {
@@ -38,16 +34,7 @@ export class ReportController {
       };
     }
     const cases = await this.db.case.findMany({ where, include: { company: true } });
-    return cases.map((c) => {
-      const fp = path.join(dir, c.company.name, c.caseNo + ".html");
-      console.log(fp);
-      // Remove HTML tags and count chars.
-      const output = execSync(`cat "${fp}" | sed 's/<[^>]*>//g' | wc -m`).toString();
-      // Log for debugging, should be removed...
-      console.log(output);
-      const length = Number.parseInt(output);
-      return { ...c, length }
-    });
+    return cases.map(withCharacterCount);
   }
 
   @UseGuards(AuthGuard)
@@ -72,7 +59,7 @@ export class ReportController {
     @Param('companyName') companyName: string,
     @Param('filename') filename: string
   ) {
-    const file = await fsp.readFile(path.join(dir, companyName, filename));
+    const file = await readReport(companyName, filename);
     return file.toString();
   }
 
@@ -84,9 +71,7 @@ export class ReportController {
     const caseNo = (Date.now() / 1000 / 60).toFixed();
     const filename = `${caseNo}.html`;
     const companyName = (await this.getCompanyName(user)) ?? 'Unknown';
-    const comDir = path.join(dir, companyName);
-    if (!fs.existsSync(comDir)) await fsp.mkdir(comDir);
-    fsp.writeFile(path.join(comDir, filename), report.content);
+    saveReport(companyName, filename, report.content);
     // Employees keep forgetting their casesNo.
     // Save it to avoid excessive support calls.
     await this.db.case.create({ data: { caseNo, userId: user.id, companyId: user.companyId } });
@@ -113,7 +98,7 @@ export class ReportController {
     @Param('filename') filename: string
   ) {
     const companyName = (await this.getCompanyName(user)) ?? 'Unknown';
-    const file = await fsp.readFile(path.join(dir, companyName, filename));
+    const file = await readReport(companyName, filename);
     return file.toString();
   }
 
