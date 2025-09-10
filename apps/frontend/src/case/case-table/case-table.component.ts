@@ -14,7 +14,7 @@ import { CaseDialogComponent } from '../case-dialog/case-dialog.component';
   styleUrls: ['./case-table.component.scss'],
 })
 export class CaseTableComponent implements OnInit {
-  readonly displayedColumns = ['caseNo', 'timestamp', 'status', 'actions'];
+  readonly displayedColumns = ['caseNo', 'timestamp', 'status', 'length', 'actions'];
   dataSource = new MatTableDataSource<Case>([{
     caseNo: "29284858",
     status: CaseStatus.OPENED,

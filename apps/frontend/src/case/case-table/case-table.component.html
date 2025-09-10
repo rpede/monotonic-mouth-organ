@@ -26,6 +26,12 @@
         </td>
       </ng-container>
 
+      <!-- Length Column -->
+      <ng-container matColumnDef="length">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Length</th>
+        <td mat-cell *matCellDef="let row">{{ row.length }}</td>
+      </ng-container>
+
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>

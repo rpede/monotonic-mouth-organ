@@ -14,6 +14,7 @@ import { Case, User } from '@prisma/client';
 import * as fs from 'fs';
 import * as fsp from 'fs/promises';
 import path from 'path';
+import { execSync } from 'child_process';
 import { AuthGuard } from '../auth/auth.guard';
 import { CurrentUser } from '../current-user.decorator';
 import { DatabaseService } from '../global/database.service';
@@ -29,14 +30,24 @@ export class ReportController {
   @UseGuards(AuthGuard)
   @Get()
   async reports(@CurrentUser() user: User) {
+    let where = undefined;
     if (user.role === Role.INVESTIGATOR) {
       const companyName = await this.getCompanyName(user);
-      return await this.db.case.findMany({
-        where: { company: { name: { equals: companyName } } }
-      });
-    } else {
-      return await this.db.case.findMany();
+      where = {
+        company: { name: { equals: companyName } }
+      };
     }
+    const cases = await this.db.case.findMany({ where, include: { company: true } });
+    return cases.map((c) => {
+      const fp = path.join(dir, c.company.name, c.caseNo + ".html");
+      console.log(fp);
+      // Remove HTML tags and count chars.
+      const output = execSync(`cat "${fp}" | sed 's/<[^>]*>//g' | wc -m`).toString();
+      // Log for debugging, should be removed...
+      console.log(output);
+      const length = Number.parseInt(output);
+      return { ...c, length }
+    });
   }
 
   @UseGuards(AuthGuard)
