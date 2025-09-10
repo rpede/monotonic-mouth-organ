@@ -9,9 +9,18 @@ import { UserModule } from '../user/user.module';
 import { CompanyModule } from '../company/company.module';
 import { ReportModule } from '../report/report.module';
 import { SupportModule } from '../support/support.module';
+import { CaseModule } from '../case/case.module';
 
 @Module({
-  imports: [GlobalModule, AuthModule, UserModule, CompanyModule, ReportModule, SupportModule],
+  imports: [
+    GlobalModule,
+    AuthModule,
+    UserModule,
+    CompanyModule,
+    ReportModule,
+    CaseModule,
+    SupportModule
+  ],
   controllers: [AppController],
   providers: [AppService, DatabaseService],
   exports: [DatabaseService],

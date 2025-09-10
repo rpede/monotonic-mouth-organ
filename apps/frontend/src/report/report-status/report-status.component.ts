@@ -21,7 +21,7 @@ export class ReportStatusComponent {
 
   public async fetchCase() {
     if (this.validCase) {
-      this.status = (await firstValueFrom(this.http.get<Case>(`/api/report/${this.caseNo}/status`))).status;
+      this.status = (await firstValueFrom(this.http.get<Case>(`/api/case/${this.caseNo}/status`))).status;
     } else {
       this.status = null;
     }

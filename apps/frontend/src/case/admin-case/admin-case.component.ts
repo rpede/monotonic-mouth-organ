@@ -29,7 +29,7 @@ export class AdminCaseComponent implements OnInit {
   async ngOnInit() {
     this.dataSource.data = await firstValueFrom(
       this.http.get<Case[]>(
-        '/api/report/company/' + this.company
+        '/api/case/company/' + this.company
       )
     );
   }

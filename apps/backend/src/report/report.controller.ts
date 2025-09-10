@@ -14,7 +14,6 @@ import { User } from '@prisma/client';
 import { AuthGuard } from '../auth/auth.guard';
 import { CurrentUser } from '../current-user.decorator';
 import { DatabaseService } from '../global/database.service';
-import { Role } from '../role';
 import { ReportDto } from './report.dto';
 import { readReport, saveReport, withCharacterCount } from '../report-utils';
 
@@ -22,34 +21,6 @@ import { readReport, saveReport, withCharacterCount } from '../report-utils';
 @Controller('report')
 export class ReportController {
   constructor(private readonly db: DatabaseService) { }
-
-  @UseGuards(AuthGuard)
-  @Get()
-  async reports(@CurrentUser() user: User) {
-    let where = undefined;
-    if (user.role === Role.INVESTIGATOR) {
-      const companyName = await this.getCompanyName(user);
-      where = {
-        company: { name: { equals: companyName } }
-      };
-    }
-    const cases = await this.db.case.findMany({ where, include: { company: true } });
-    return cases.map(withCharacterCount);
-  }
-
-  @UseGuards(AuthGuard)
-  @Get('company/:companyName')
-  async reportsForCompany(
-    @CurrentUser() user: User | undefined,
-    @Param('companyName') companyName: string
-  ) {
-    if (user.role !== 'ADMIN') {
-      throw new HttpException('Only allowed for admin', HttpStatus.FORBIDDEN);
-    }
-    return await this.db.case.findMany({
-      where: { company: { name: { equals: companyName } } }
-    });
-  }
 
   @UseGuards(AuthGuard)
   @Get('/company/:companyName/:filename(*)')
@@ -76,18 +47,6 @@ export class ReportController {
     // Save it to avoid excessive support calls.
     await this.db.case.create({ data: { caseNo, userId: user.id, companyId: user.companyId } });
     return { caseNo };
-  }
-
-  @UseGuards(AuthGuard)
-  @Put(':caseNo/status')
-  async updateStatus(@Param("caseNo") caseNo, @Body('status') status: string) {
-    return await this.db.case.update({ where: { caseNo }, data: { status } });
-  }
-
-  @UseGuards(AuthGuard)
-  @Get(':caseNo/status')
-  async getStatus(@Param("caseNo") caseNo) {
-    return await this.db.case.findUnique({ where: { caseNo } });
   }
 
   @UseGuards(AuthGuard)

@@ -30,13 +30,13 @@ export class CaseTableComponent implements OnInit {
 
   async ngOnInit() {
     this.dataSource.data = await firstValueFrom(
-      this.http.get<Case[]>('/api/report')
+      this.http.get<Case[]>('/api/case')
     );
   }
 
   updateStatus(row: Case, event: { value: string }) {
     const body = { status: event.value };
-    this.http.put<Case>(`/api/report/${row.caseNo}/status`, body).subscribe((response) => {
+    this.http.put<Case>(`/api/case/${row.caseNo}/status`, body).subscribe((response) => {
       this.snackBar.open(`Status changed to: ${response.status}`, 'dismiss');
     });
   }
