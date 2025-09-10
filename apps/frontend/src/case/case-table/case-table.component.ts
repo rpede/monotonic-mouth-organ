@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { firstValueFrom } from 'rxjs';
 import { CaseStatus } from '../../shared/case-status';
-import { Case } from './case.model';
+import { Case } from '../../shared/case.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CaseDialogComponent } from '../case-dialog/case-dialog.component';
 

@@ -13,10 +13,13 @@ import { CurrentUser } from '../current-user.decorator';
 @UseGuards(AuthGuard)
 @Controller('user')
 export class UserController {
-  constructor(private readonly db: DatabaseService) {}
+  constructor(private readonly db: DatabaseService) { }
+
   @Get()
   users(@CurrentUser() { companyId }: User) {
-    return this.db.user.findMany({ where: { companyId } });
+    console.log(companyId);
+    const filter = companyId ? { where: { companyId } } : undefined;
+    return this.db.user.findMany(filter);
   }
 
   @Get(':id')

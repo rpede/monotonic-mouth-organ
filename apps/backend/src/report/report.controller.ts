@@ -48,8 +48,9 @@ export class ReportController {
     if (user.role !== 'ADMIN') {
       throw new HttpException('Only allowed for admin', HttpStatus.FORBIDDEN);
     }
-    const files = await fsp.readdir(path.join(dir, companyName));
-    return files.map((file) => `${companyName}/${file}`);
+    return await this.db.case.findMany({
+      where: { company: { name: { equals: companyName } } }
+    });
   }
 
   @UseGuards(AuthGuard)

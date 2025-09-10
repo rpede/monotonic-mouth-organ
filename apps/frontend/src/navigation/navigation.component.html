@@ -33,7 +33,7 @@
         [activated]="router.isActive('/report/new', true)"
         routerLinkActive="list-item-active"
       >
-        New report
+        Report
       </a>
       <a
         *ngIf="hasRole('EMPLOYEE') | async"
@@ -78,7 +78,7 @@
         routerLinkActive="list-item-active"
         (click)="adminReportDialog()"
       >
-        Administrate Cases
+        Cases
       </a>
       <a
         *ngIf="hasRole('SUPPORT') | async"

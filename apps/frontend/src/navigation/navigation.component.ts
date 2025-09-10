@@ -47,7 +47,6 @@ export class NavigationComponent {
   adminReportDialog() {
     const dialogRef = this.dialog.open(SelectFolderDialogComponent);
     dialogRef.afterClosed().subscribe((folder) => {
-      console.log(folder);
       this.router.navigateByUrl('/case/admin/' + folder);
     });
   }
