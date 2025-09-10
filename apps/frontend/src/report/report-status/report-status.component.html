@@ -2,11 +2,17 @@
   <h1>Check status of your report</h1>
   <h3>You can follow the case for any report you've might have created here.</h3>
   <mat-form-field class="full-width">
-    <input matInput placeholder="Case Number" [(ngModel)]="caseNo" min="0" max="99999999" />
+    <input matInput placeholder="Case Number" [(ngModel)]="caseNo" min="0" max="99999999" (keyup)="fetchCase()" />
   </mat-form-field>
 
   <article *ngIf="validCase;else invalidCaseNo">
     <h3>Date: {{caseNo | caseCreated}}</h3>
+    <h3>Status: <ng-container [ngSwitch]="status">
+      <span *ngSwitchCase="'OPENED'" style="color: blue;">{{status}}</span>
+      <span *ngSwitchCase="'INVESTIGATING'" style="color: orange;">{{status}}</span>
+      <span *ngSwitchCase="'CLOSED'" style="color: green;">{{status}}</span>
+      <span *ngSwitchDefault>Unknown</span>
+    </ng-container></h3>
     <iframe style="width: 100%; height: 600px"
       [src]="sanitizer.bypassSecurityTrustResourceUrl('/api/report/' + caseNo + '.html')">
     </iframe>

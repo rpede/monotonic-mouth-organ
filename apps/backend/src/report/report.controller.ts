@@ -89,6 +89,12 @@ export class ReportController {
   }
 
   @UseGuards(AuthGuard)
+  @Get(':caseNo/status')
+  async getStatus(@Param("caseNo") caseNo) {
+    return await this.db.case.findUnique({ where: { caseNo } });
+  }
+
+  @UseGuards(AuthGuard)
   @Get(':filename(*)')
   @Header('Content-Type', 'text/html')
   async report(
@@ -110,9 +116,5 @@ export class ReportController {
     catch {
       return null;
     }
-  }
-
-  private async saveCaseNo(user: User, caseNo: string) {
-    await this.db.case.create({ data: { caseNo, userId: user.id } })
   }
 }
