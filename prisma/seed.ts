@@ -99,9 +99,21 @@ async function main() {
     companyId: companyB.id,
   });
   await saveCase({
-    caseNo: "29284858",
-    user: { connect: { email: 'jim@a.com' } },
+    caseNo: "29293297",
+    user: { connect: { email: 'dwight@a.com' } },
     company: { connect: { name: "Company A" } }
+  });
+  await saveCase({
+    caseNo: "29293309",
+    user: { connect: { email: 'jim@a.com' } },
+    company: { connect: { name: "Company A" } },
+    status: 'INVESTIGATING'
+  });
+  await saveCase({
+    caseNo: "29293310",
+    user: { connect: { email: 'pam@a.com' } },
+    company: { connect: { name: "Company A" } },
+    status: 'CLOSED'
   });
 }
 
