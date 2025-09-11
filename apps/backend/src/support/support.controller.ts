@@ -6,6 +6,7 @@ import { DatabaseService } from "../global/database.service";
 @Controller('support')
 export class SupportController {
   constructor(private readonly db: DatabaseService) { }
+
   @Get('case')
   cases(@Query("email") email: string) {
     return this.db.case.findMany({ where: { user: { email: { equals: email } } } })

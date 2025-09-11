@@ -5,12 +5,15 @@ import { CurrentUser } from "../app/current-user.decorator";
 import { User } from "@prisma/client";
 import { Role } from "../role";
 import { withCharacterCount } from "../report-utils";
+import { Roles } from "../auth/roles.decorator";
+import { RolesGuard } from "../auth/roles.guard";
 
 @Controller('case')
 export class CaseController {
   constructor(private readonly db: DatabaseService) { }
 
-  @UseGuards(AuthGuard)
+  @Roles(Role.INVESTIGATOR, Role.ADMIN)
+  @UseGuards(AuthGuard, RolesGuard)
   @Get()
   async cases(@CurrentUser() user: User) {
     let where = undefined;
@@ -24,7 +27,8 @@ export class CaseController {
     return cases.map(withCharacterCount);
   }
 
-  @UseGuards(AuthGuard)
+  @Roles(Role.INVESTIGATOR, Role.ADMIN)
+  @UseGuards(AuthGuard, RolesGuard)
   @Get('company/:companyName')
   async casesByCompany(
     @CurrentUser() user: User | undefined,
@@ -38,7 +42,8 @@ export class CaseController {
     });
   }
 
-  @UseGuards(AuthGuard)
+  @Roles(Role.INVESTIGATOR, Role.ADMIN)
+  @UseGuards(AuthGuard, RolesGuard)
   @Put(':caseNo/status')
   async updateStatus(
     @Param("caseNo") caseNo: string,
@@ -47,6 +52,8 @@ export class CaseController {
     return await this.db.case.update({ where: { caseNo }, data: { status } });
   }
 
+  // No role guard, because user needs to be able to check status of their
+  // cases.
   @UseGuards(AuthGuard)
   @Get(':caseNo/status')
   async getStatus(@Param("caseNo") caseNo: string) {
