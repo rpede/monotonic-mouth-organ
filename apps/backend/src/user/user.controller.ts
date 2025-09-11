@@ -17,15 +17,14 @@ export class UserController {
 
   @Get()
   users(@CurrentUser() { companyId }: User) {
-    console.log(companyId);
     const filter = companyId ? { where: { companyId } } : undefined;
     return this.db.user.findMany(filter);
   }
 
   @Get(':id')
   user(@CurrentUser() user: User, @Param('id', ParseIntPipe) id: number) {
-    return this.db.user.findFirst({
-      where: { id, companyId: user.companyId ?? undefined },
+    return this.db.user.findUnique({
+      where: { id },
       include: { company: true },
     });
   }
