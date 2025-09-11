@@ -14,12 +14,12 @@ WORKDIR /app
 USER node
 COPY --from=build --chown=node /app/dist/apps/backend .
 COPY --from=build --chown=node /app/prisma/database.db .
-RUN mkdir -m a+rw user-data
 COPY --chown=node package.json ./
 COPY --chown=node package-lock.json ./
 COPY --chown=node prisma .
 COPY --chown=node .env .
 RUN npm install --omit=dev
 RUN npx prisma generate
+COPY --chown=node user-data/ ./user-data/
 EXPOSE 3333
 CMD node main.js
