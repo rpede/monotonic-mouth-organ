@@ -35,14 +35,14 @@ async function main() {
     email: 'admin@mmo.example',
     name: 'Admin',
     passwordHash:
-      '$2b$10$lJp7XSw2BiUJit/CBjPXieJXPQJWj01IY.966XnKDH3EDkdVno/o2', // god
+      '$2b$10$lJp7XSw2BiUJit/CBjPXieJXPQJWj01IY.966XnKDH3EDkdVno/o2',
     role: 'ADMIN',
   });
 
   await saveUser({
     email: 'support@mmo.example',
     name: 'Support',
-    passwordHash: 'f15ada4c42f934eea105b4a7ccc3707b', // lasthope
+    passwordHash: 'f15ada4c42f934eea105b4a7ccc3707b',
     role: 'SUPPORT',
   });
 
@@ -50,21 +50,21 @@ async function main() {
   await saveUser({
     email: 'dwight@dm.example',
     name: 'Dwight Schrute',
-    passwordHash: 'bdc87b9c894da5168059e00ebffb9077', // password1234
+    passwordHash: 'bdc87b9c894da5168059e00ebffb9077',
     role: 'INVESTIGATOR',
     companyId: companyA.id,
   });
   await saveUser({
     email: 'jim@dm.example',
     name: 'Jim',
-    passwordHash: '54aea06e65a58b1bc96e060c86b212c3', // ilovepam
+    passwordHash: '54aea06e65a58b1bc96e060c86b212c3',
     role: 'EMPLOYEE',
     companyId: companyA.id,
   });
   await saveUser({
     email: 'pam@dm.example',
     name: 'Pam',
-    passwordHash: '8df2b7edb88ba2270a320df6651b1422', // ilovejim
+    passwordHash: '8df2b7edb88ba2270a320df6651b1422',
     role: 'EMPLOYEE',
     companyId: companyA.id,
   });
@@ -73,28 +73,28 @@ async function main() {
   await saveUser({
     email: 'boss@unknown.example',
     name: 'Pointy-haired Boss',
-    passwordHash: 'f8f4877c5d8062c7ce207170d070f11b', // p3cafx4q
+    passwordHash: 'f8f4877c5d8062c7ce207170d070f11b',
     role: 'INVESTIGATOR',
     companyId: companyB.id,
   });
   await saveUser({
     email: 'dilbert@unknown.example',
     name: 'Dilbert',
-    passwordHash: '4550955866ee7b328f9e0877bc37a096', // Ab4gSgWX
+    passwordHash: '4550955866ee7b328f9e0877bc37a096',
     role: 'EMPLOYEE',
     companyId: companyB.id,
   });
   await saveUser({
     email: 'wally@unknown.example',
     name: 'Wally',
-    passwordHash: '3ee9f4b95b4c9e5276d4dba3df61e353', // B2WDEcBg
+    passwordHash: '3ee9f4b95b4c9e5276d4dba3df61e353',
     role: 'EMPLOYEE',
     companyId: companyB.id,
   });
   await saveUser({
     email: 'alice@unknown.example',
     name: 'Alice',
-    passwordHash: 'e2d0b6fa939e5ceec4217df543606144', // OsRxnTx]S8?!\K[O;/`zD<QB4lyk\vy0
+    passwordHash: 'e2d0b6fa939e5ceec4217df543606144',
     role: 'EMPLOYEE',
     companyId: companyB.id,
   });
