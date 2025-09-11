@@ -32,7 +32,7 @@ function saveCase(data: Prisma.CaseCreateInput | Prisma.CaseUncheckedCreateInput
 
 async function main() {
   await saveUser({
-    email: 'admin@example.com',
+    email: 'admin@mmo.example',
     name: 'Admin',
     passwordHash:
       '$2b$10$lJp7XSw2BiUJit/CBjPXieJXPQJWj01IY.966XnKDH3EDkdVno/o2', // god
@@ -40,59 +40,59 @@ async function main() {
   });
 
   await saveUser({
-    email: 'support@example.com',
+    email: 'support@mmo.example',
     name: 'Support',
-    passwordHash: 'f21e6e160c503ad7b79e60f22d43e861', // go2support
+    passwordHash: 'f15ada4c42f934eea105b4a7ccc3707b', // lasthope
     role: 'SUPPORT',
   });
 
-  const companyA = await saveCompany({ name: 'Company A' });
+  const companyA = await saveCompany({ name: 'Dunder Mifflin' });
   await saveUser({
-    email: 'dwight@a.com',
+    email: 'dwight@dm.example',
     name: 'Dwight Schrute',
     passwordHash: 'bdc87b9c894da5168059e00ebffb9077', // password1234
     role: 'INVESTIGATOR',
     companyId: companyA.id,
   });
   await saveUser({
-    email: 'jim@a.com',
+    email: 'jim@dm.example',
     name: 'Jim',
     passwordHash: '54aea06e65a58b1bc96e060c86b212c3', // ilovepam
     role: 'EMPLOYEE',
     companyId: companyA.id,
   });
   await saveUser({
-    email: 'pam@a.com',
+    email: 'pam@dm.example',
     name: 'Pam',
     passwordHash: '8df2b7edb88ba2270a320df6651b1422', // ilovejim
     role: 'EMPLOYEE',
     companyId: companyA.id,
   });
 
-  const companyB = await saveCompany({ name: 'Company B' });
+  const companyB = await saveCompany({ name: 'Path-E-Tech' });
   await saveUser({
-    email: 'boss@b.com',
+    email: 'boss@unknown.example',
     name: 'Pointy-haired Boss',
     passwordHash: 'f8f4877c5d8062c7ce207170d070f11b', // p3cafx4q
     role: 'INVESTIGATOR',
     companyId: companyB.id,
   });
   await saveUser({
-    email: 'dilbert@b.com',
+    email: 'dilbert@unknown.example',
     name: 'Dilbert',
     passwordHash: '4550955866ee7b328f9e0877bc37a096', // Ab4gSgWX
     role: 'EMPLOYEE',
     companyId: companyB.id,
   });
   await saveUser({
-    email: 'wally@b.com',
+    email: 'wally@unknown.example',
     name: 'Wally',
     passwordHash: '3ee9f4b95b4c9e5276d4dba3df61e353', // B2WDEcBg
     role: 'EMPLOYEE',
     companyId: companyB.id,
   });
   await saveUser({
-    email: 'alice@b.com',
+    email: 'alice@unknown.example',
     name: 'Alice',
     passwordHash: 'e2d0b6fa939e5ceec4217df543606144', // OsRxnTx]S8?!\K[O;/`zD<QB4lyk\vy0
     role: 'EMPLOYEE',
@@ -100,20 +100,25 @@ async function main() {
   });
   await saveCase({
     caseNo: "29293297",
-    user: { connect: { email: 'dwight@a.com' } },
-    company: { connect: { name: "Company A" } }
+    user: { connect: { email: 'dwight@dm.example' } },
+    company: { connect: { name: "Dunder Mifflin" } }
   });
   await saveCase({
     caseNo: "29293309",
-    user: { connect: { email: 'jim@a.com' } },
-    company: { connect: { name: "Company A" } },
+    user: { connect: { email: 'jim@dm.example' } },
+    company: { connect: { name: "Dunder Mifflin" } },
     status: 'INVESTIGATING'
   });
   await saveCase({
     caseNo: "29293310",
-    user: { connect: { email: 'pam@a.com' } },
-    company: { connect: { name: "Company A" } },
+    user: { connect: { email: 'pam@dm.example' } },
+    company: { connect: { name: "Dunder Mifflin" } },
     status: 'CLOSED'
+  });
+  await saveCase({
+    caseNo: "13371337",
+    user: { connect: { email: 'wally@unknown.example' } },
+    company: { connect: { name: "Path-E-Tech" } },
   });
 }
 
