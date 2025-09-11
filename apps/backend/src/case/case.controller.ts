@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Param, Put, UseGuards } from "@nestjs/common";
 import { DatabaseService } from "../global/database.service";
 import { AuthGuard } from "../auth/auth.guard";
-import { CurrentUser } from "../current-user.decorator";
+import { CurrentUser } from "../app/current-user.decorator";
 import { User } from "@prisma/client";
 import { Role } from "../role";
 import { withCharacterCount } from "../report-utils";

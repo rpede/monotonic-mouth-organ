@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { AuthGuard } from '../auth/auth.guard';
-import { CurrentUser } from '../current-user.decorator';
+import { CurrentUser } from '../app/current-user.decorator';
 import { DatabaseService } from '../global/database.service';
 import { ReportDto } from './report.dto';
 import { readReport, saveReport, withCharacterCount } from '../report-utils';

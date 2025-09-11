@@ -8,7 +8,7 @@ import {
 import { User } from '@prisma/client';
 import { AuthGuard } from '../auth/auth.guard';
 import { DatabaseService } from '../global/database.service';
-import { CurrentUser } from '../current-user.decorator';
+import { CurrentUser } from '../app/current-user.decorator';
 
 @UseGuards(AuthGuard)
 @Controller('user')
