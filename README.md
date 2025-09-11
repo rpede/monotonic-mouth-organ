@@ -41,15 +41,15 @@ This is a (fake) whistle-blower solution where employees can (un)safely report
 company policy violations, misconduct, fraud, harassment or other concerns.
 
 The solution aims for maximum (in)security.
-We therefore assure any employees identity is kept ~anonymously~, such that
+We therefore assure any employees identity is kept ~anonymous~, such that
 investigators can ~not~ tell the identity of whoever filed a report.
 
 To all employees, please remember the case number you get after filing a
 report, because our support can not (unless they absolutely have to) recover it
 for you.
 
-Also, please don't bother the admin with trivialities (because admin panel is
-still work-in-progress), as she is very busy (on vacation) at the moment.
+Also, please don't bother the admin with trivialities (because the admin panel
+is still work-in-progress), as she is very busy (on vacation) at the moment.
 
 ## Getting started
 
