@@ -1,5 +1,7 @@
 # Monotonic Mouth Organ
 
+![Logo](./logo-small.png)
+
 ## Introduction
 
 This is how NOT to build whistle-blower software.
