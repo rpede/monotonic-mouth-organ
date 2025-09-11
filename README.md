@@ -10,7 +10,7 @@ It is intended as a teaching tool only!
 This project is intentionally broken in as many horrible ways as I can think of.
 It is intended only to be used en exercise in pentesting.
 
-> [!DANGER]
+> ![DANGER]
 > Only run in a safe environment, as it will expose the entire filesystem over
 > HTTP and is vulnerable to remote code execution.
 
