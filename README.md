@@ -14,6 +14,25 @@ It is intended only to be used en exercise in pentesting.
 > Only run in a safe environment, as it will expose the entire filesystem over
 > HTTP and is vulnerable to remote code execution.
 
+## Vulnerabilities
+
+It contains (at least) vulnerabilities of the following categories.
+
+- Broken access control
+  - IDOR
+  - Path traversal
+  - Privilege escalation
+- Cryptographic failure
+- Injection
+  - SQLi
+  - XSS
+  - OS command injection
+- Insecure design
+- Security misconfiguration
+- Vulnerable and Outdated Components
+
+Can you find them all?
+
 ## Backstory
 
 This is a (fake) whistle-blower solution where employees can (un)safely report
