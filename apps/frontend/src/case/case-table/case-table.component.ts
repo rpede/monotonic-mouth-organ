@@ -42,6 +42,12 @@ export class CaseTableComponent implements OnInit {
   }
 
   show(row: Case) {
-    this.dialog.open(CaseDialogComponent, { data: `${row.caseNo}.html` });
+    this.dialog.open(CaseDialogComponent, {
+      width: '800px',
+      maxWidth: '90vw',
+      height: '600px',
+      maxHeight: '90vw',
+      data: `${row.caseNo}.html`
+    });
   }
 }

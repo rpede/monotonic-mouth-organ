@@ -35,6 +35,10 @@ export class AdminCaseComponent implements OnInit {
   }
 
   show(row: Case) {
-    this.dialog.open(CaseDialogComponent, { data: `company/${this.company}/${row.caseNo}.html` });
+    this.dialog.open(CaseDialogComponent, {
+      width: '800px',
+      maxWidth: '90vw',
+      data: `company/${this.company}/${row.caseNo}.html`
+    });
   }
 }
