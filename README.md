@@ -33,6 +33,8 @@ It contains (at least) vulnerabilities of the following categories.
 
 Can you find them all?
 
+How many user credentials can you uncover?
+
 ## Backstory
 
 This is a (fake) whistle-blower solution where employees can (un)safely report
