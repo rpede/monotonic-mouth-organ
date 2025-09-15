@@ -1,4 +1,5 @@
 FROM node:22-alpine AS build
+RUN apk add --no-cache python3 py3-setuptools make g++
 WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
