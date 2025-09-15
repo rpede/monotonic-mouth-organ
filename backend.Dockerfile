@@ -6,7 +6,7 @@ COPY package-lock.json ./
 RUN npm ci
 COPY . .
 RUN npm run sync && npx nx build backend
-
+ENV CYPRESS_INSTALL_BINARY=0
 FROM node:22-alpine AS final
 RUN apk add openssl --no-cache
 RUN mkdir /app && chown node /app
