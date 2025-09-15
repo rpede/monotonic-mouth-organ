@@ -1,8 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Case } from "../../shared/case.model";
 import { firstValueFrom } from "rxjs";
+
+interface Case {
+  caseNo: string;
+  status: string;
+  company: { name: string };
+  length: number;
+}
 
 @Component({
   selector: 'mmo-report-status',
@@ -15,15 +21,17 @@ import { firstValueFrom } from "rxjs";
 })
 export class ReportStatusComponent {
   caseNo = "";
-  status: string | null = null;
+  case: Case | null = null;
+  length: number | string | null = null;
 
   constructor(readonly sanitizer: DomSanitizer, private readonly http: HttpClient) { }
 
   public async fetchCase() {
     if (this.validCase) {
-      this.status = (await firstValueFrom(this.http.get<Case>(`/api/case/${this.caseNo}/status`))).status;
+      this.case = (await firstValueFrom(this.http.get<Case>(`/api/case/${this.caseNo}/status`)));
+      this.length = (await firstValueFrom(this.http.get<number | string>(`/api/case/${this.caseNo}/length`)));
     } else {
-      this.status = null;
+      this.case = null;
     }
   }
 

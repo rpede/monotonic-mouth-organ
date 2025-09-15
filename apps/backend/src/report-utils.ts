@@ -15,17 +15,20 @@ export function reportDirectory(companyName: string) {
 }
 
 export function withCharacterCount(c: Case & { company: { name: string } }) {
-  const fp = reportPath(c.company.name, c.caseNo);
-  // Remove HTML tags and count chars.
-  const output = execSync(`cat "${fp}" | sed 's/<[^>]*>//g' | wc -m`).toString();
-  // Log for debugging, should be removed...
-  console.log(output);
-  const length = Number.parseInt(output);
+  const length = Number.parseInt(getReportLength(c.company.name, c.caseNo));
   return { ...c, length }
 }
 
-export async function readReport(companyName: string, filename: string) {
-  return await fsp.readFile(path.join(dir, companyName, filename));
+export function getReportLength(companyName: string, caseNo: string) {
+  const fp = reportPath(companyName, caseNo);
+  // Remove HTML tags and count chars.
+  const output = execSync(`cat "${fp}" | sed 's/<[^>]*>//g' | wc -m`).toString();
+  // Log for debugging, should be removed...
+  return output;
+}
+
+export async function readReport(filename: string) {
+  return await fsp.readFile(path.join(dir, filename));
 }
 
 export async function saveReport(companyName: string, filename: string, content: string) {

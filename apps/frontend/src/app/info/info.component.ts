@@ -22,11 +22,11 @@ type Company = {
   ],
 })
 export class InfoComponent {
-  readonly company$ = this.auth.user.pipe(
+  readonly company$ = this.auth.user$.pipe(
     filter((user) => !!user),
     switchMap((user) =>
       this.http.get<Company>(`/api/company/${user?.companyId}`)
     )
   );
-  constructor(private auth: AuthService, private http: HttpClient) {}
+  constructor(private auth: AuthService, private http: HttpClient) { }
 }

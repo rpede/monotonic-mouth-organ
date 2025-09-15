@@ -40,7 +40,7 @@ export class AdminCaseComponent implements OnInit {
       maxWidth: '90vw',
       height: '600px',
       maxHeight: '90vw',
-      data: `company/${this.company}/${row.caseNo}.html`
+      data: row
     });
   }
 }

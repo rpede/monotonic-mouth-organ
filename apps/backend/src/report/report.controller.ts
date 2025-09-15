@@ -22,18 +22,6 @@ import { readReport, saveReport, withCharacterCount } from '../report-utils';
 export class ReportController {
   constructor(private readonly db: DatabaseService) { }
 
-  @UseGuards(AuthGuard)
-  @Get('/company/:companyName/:filename(*)')
-  @Header('Content-Type', 'text/html')
-  async companyReport(
-    @CurrentUser() user: User | undefined,
-    @Param('companyName') companyName: string,
-    @Param('filename') filename: string
-  ) {
-    const file = await readReport(companyName, filename);
-    return file.toString();
-  }
-
   @Post()
   async save(
     @CurrentUser() user: User | undefined,
@@ -53,11 +41,9 @@ export class ReportController {
   @Get(':filename(*)')
   @Header('Content-Type', 'text/html')
   async report(
-    @CurrentUser() user: User | undefined,
     @Param('filename') filename: string
   ) {
-    const companyName = (await this.getCompanyName(user)) ?? 'Unknown';
-    const file = await readReport(companyName, filename);
+    const file = await readReport(filename);
     return file.toString();
   }
 

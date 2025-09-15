@@ -30,11 +30,11 @@ export class NavigationComponent {
   ) { }
 
   isLoggedIn() {
-    return this.auth.user.pipe(map((user) => !!user));
+    return this.auth.user$.pipe(map((user) => !!user));
   }
 
   hasRole(...roles: string[]) {
-    return this.auth.user.pipe(
+    return this.auth.user$.pipe(
       map((user) => user && roles.includes(user.role))
     );
   }

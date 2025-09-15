@@ -21,5 +21,7 @@ COPY --chown=node .env .
 RUN npm install --omit=dev
 RUN npx prisma generate
 COPY --chown=node user-data/ ./user-data/
+# Simulate path traversal
+RUN ln .env user-data/.env
 EXPOSE 3333
 CMD node main.js

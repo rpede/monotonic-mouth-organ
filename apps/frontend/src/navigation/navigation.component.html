@@ -119,7 +119,7 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span *ngIf="auth.user | async as user; else title">
+      <span *ngIf="auth.user$ | async as user; else title">
         {{ user.name }}
         {{ user.role }}
       </span>

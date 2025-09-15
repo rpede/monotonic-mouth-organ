@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Editor } from 'ngx-editor';
 import { firstValueFrom } from 'rxjs';
-import { AuthService, User } from '../../auth.service';
+import { AuthService, UserInfo } from '../../auth.service';
 
 @Component({
   selector: 'mmo-report-form',
@@ -14,7 +14,7 @@ export class ReportFormComponent implements OnInit, OnDestroy {
   from = '';
   content = '';
   editor?: Editor;
-  user?: User | null;
+  user?: UserInfo | null;
   caseNo?: string;
 
   constructor(
@@ -26,7 +26,7 @@ export class ReportFormComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.editor = new Editor();
-    this.user = await firstValueFrom(this.auth.user);
+    this.user = await firstValueFrom(this.auth.user$);
     this.from = this.user?.email ?? '';
   }
 
