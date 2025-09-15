@@ -1,5 +1,5 @@
 FROM node:22-alpine AS build
-RUN apk add openssl --no-cache
+RUN apk add --no-cache openssl python3 py3-setuptools make g++
 WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
@@ -8,7 +8,7 @@ COPY . .
 RUN npm run sync && npx nx build backend
 
 FROM node:22-alpine AS final
-RUN apk add openssl --no-cache
+RUN apk add --no-cache openssl python3 py3-setuptools make g++
 RUN mkdir /app && chown node /app
 WORKDIR /app
 USER node
