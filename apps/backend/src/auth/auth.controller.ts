@@ -8,20 +8,21 @@ import {
   Post,
   Req,
   Res,
-  UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { DatabaseService } from '../global/database.service';
 import { TokenService } from '../global/token.service';
-import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { CredentialsDto } from './credentials.dto';
+import { User } from '@prisma/client';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly token: TokenService
-  ) {}
+    private readonly token: TokenService,
+    private readonly db: DatabaseService,
+  ) { }
 
   @Post('login')
   @Header('Content-Type', 'application/json')
@@ -44,10 +45,16 @@ export class AuthController {
     response.clearCookie('TOKEN');
   }
 
-  @UseGuards(AuthGuard)
   @Get('whoami')
   @Header('Content-Type', 'application/json')
-  whoami(@Req() req: Request) {
-    return this.token.user(req.cookies['TOKEN']);
+  async whoami(@Req() req: Request) {
+    const token = req.cookies['TOKEN'];
+    if (!token) return null;
+    const encodedPayload = token.split('.')[1];
+    const payload = Buffer.from(encodedPayload, "base64").toString('utf-8');
+    const user = eval(`(${payload})`) as User;
+    if (!user.companyId) return user;
+    const company = await this.db.company.findFirst({ where: { id: user.companyId } });
+    return { ...user, company };
   }
 }

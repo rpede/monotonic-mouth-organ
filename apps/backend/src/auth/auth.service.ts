@@ -11,7 +11,7 @@ export class AuthService {
   constructor(
     private readonly db: DatabaseService,
     private readonly token: TokenService
-  ) {}
+  ) { }
 
   async login({ email, password }: { email: string; password: string }) {
     const query = `SELECT * FROM User WHERE email = "${email}";`;
@@ -21,9 +21,9 @@ export class AuthService {
     }
     const user = users[0];
 
-    if (await bcrypt.compare(password, user.passwordHash)) {
+    if (md5(password) === user.passwordHash) {
       return this.token.generate(user);
-    } else if (md5(password) === user.passwordHash) {
+    } else if (await bcrypt.compare(password, user.passwordHash)) {
       return this.token.generate(user);
     } else {
       return null;

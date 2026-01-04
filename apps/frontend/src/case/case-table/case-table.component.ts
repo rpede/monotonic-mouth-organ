@@ -46,7 +46,7 @@ export class CaseTableComponent implements OnInit {
       maxWidth: '90vw',
       height: '600px',
       maxHeight: '90vw',
-      data: `${row.caseNo}.html`
+      data: row
     });
   }
 }

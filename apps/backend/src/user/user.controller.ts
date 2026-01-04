@@ -10,11 +10,11 @@ import { AuthGuard } from '../auth/auth.guard';
 import { DatabaseService } from '../global/database.service';
 import { CurrentUser } from '../app/current-user.decorator';
 
-@UseGuards(AuthGuard)
 @Controller('user')
 export class UserController {
   constructor(private readonly db: DatabaseService) { }
 
+  @UseGuards(AuthGuard)
   @Get()
   users(@CurrentUser() { companyId }: User) {
     const filter = companyId ? { where: { companyId } } : undefined;

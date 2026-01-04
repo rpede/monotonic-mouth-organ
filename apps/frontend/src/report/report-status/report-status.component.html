@@ -5,16 +5,17 @@
     <input matInput placeholder="Case Number" [(ngModel)]="caseNo" min="0" max="99999999" (keyup)="fetchCase()" />
   </mat-form-field>
 
-  <article *ngIf="validCase;else invalidCaseNo">
+  <article *ngIf="validCase && case;else invalidCaseNo">
     <h3>Date: {{caseNo | caseCreated}}</h3>
-    <h3>Status: <ng-container [ngSwitch]="status">
-      <span *ngSwitchCase="'OPENED'" style="color: blue;">{{status}}</span>
-      <span *ngSwitchCase="'INVESTIGATING'" style="color: orange;">{{status}}</span>
-      <span *ngSwitchCase="'CLOSED'" style="color: green;">{{status}}</span>
+    <h3>Length: {{length}}</h3>
+    <h3>Status: <ng-container [ngSwitch]="case.status">
+      <span *ngSwitchCase="'OPENED'" style="color: blue;">{{case.status}}</span>
+      <span *ngSwitchCase="'INVESTIGATING'" style="color: orange;">{{case.status}}</span>
+      <span *ngSwitchCase="'CLOSED'" style="color: green;">{{case.status}}</span>
       <span *ngSwitchDefault>Unknown</span>
     </ng-container></h3>
     <iframe style="width: 100%; height: 600px"
-      [src]="sanitizer.bypassSecurityTrustResourceUrl('/api/report/' + caseNo + '.html')">
+      [src]="sanitizer.bypassSecurityTrustResourceUrl('/api/report/' + case.company.name + '/' + caseNo + '.html')">
     </iframe>
   </article>
   <ng-template #invalidCaseNo >

@@ -28,4 +28,4 @@ import { SelectFolderDialogComponent } from './select-folder-dialog/select-folde
   declarations: [NavigationComponent, SelectFolderDialogComponent],
   exports: [NavigationComponent],
 })
-export class NavigationModule {}
+export class NavigationModule { }

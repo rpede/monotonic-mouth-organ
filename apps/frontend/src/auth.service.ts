@@ -2,21 +2,33 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 
-export interface User {
+export interface UserInfo {
   id: number;
   email: string;
+  passwordHash: string;
   name: string;
   role: string;
-  companyId: number | null;
+  companyId: number;
+  iat: number;
+  exp: number;
+  company: {
+    id: number;
+    name: string;
+  }
 }
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  private readonly _user = new BehaviorSubject<User | null>(null);
+  private readonly _user = new BehaviorSubject<UserInfo | null>(null);
+  public get user$() {
+    return this._user as Observable<UserInfo | null>;
+  }
+
   public get user() {
-    return this._user as Observable<User | null>;
+    return this._user.value;
   }
 
   initialize() {
@@ -30,7 +42,7 @@ export class AuthService {
   private async load() {
     try {
       const user = await firstValueFrom(
-        this.http.get<User>('/api/auth/whoami')
+        this.http.get<UserInfo>('/api/auth/whoami')
       );
       this._user.next(user);
     } catch (error) {
