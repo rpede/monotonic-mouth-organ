@@ -64,5 +64,6 @@ Happy hacking!
 
 ## Walk-through
 
-There is a walk-through that you can follow if you don't know how to proceed.
+There is a walk-through ([here](/walkthrough.md)) that you can follow if you
+don't know how to proceed.
 However, probably more fun if you can find vulnerabilities on your own.
